@@ -1,4 +1,4 @@
-# Development Guide
+# Overview of planned functionality
 
 ## MVP Baseline (Must-Have)
 - **Compare Configuration Against Existing Install:**
