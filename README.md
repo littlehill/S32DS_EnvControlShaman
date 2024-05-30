@@ -10,8 +10,8 @@ It’s my own nightmare to manage this manually rn, and therefore here we go.
 
 ### What S32DS EnvControlShaman Offers
 
-shit empty repo atm, working on alpha [shrug]
-
+shit empty repo atm, working on alpha [shrug]  
+what is the plan ? [see the requirements-and-planning.md](requirements-and-planning.md)
 
 #### Main Goal for alpha
 
