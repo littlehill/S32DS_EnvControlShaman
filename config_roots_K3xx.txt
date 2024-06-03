@@ -1,3 +1,6 @@
+com.nxp.RTD.S32K3XX.feature.feature.group/4.0.0.202404020208
+com.nxp.RTD.S32K3_S32M27X.feature.feature.group/4.0.0.202404020208
+com.nxp.RTD.S32K3_S32M27X.root.feature.feature.group/4.0.0.202404020208
 com.nxp.cdt.platform.patch.feature.group/10.3.4
 com.nxp.s32ds.brc.arm.tools.gcc1620.feature.feature.group/1.0.0.202005201521
 com.nxp.s32ds.brc.gdb.tools.feature.feature.group/1.0.0.202012011653
@@ -47,4 +50,3 @@ org.eclipse.tm.terminal.view.feature.feature.group/10.3.3.202109091914
 org.eclipse.wst.xml_ui.feature.feature.group/3.22.0.v202103232331
 org.eclipse.xtend.feature.group/2.2.0.v201605260315
 org.eclipse.zest.feature.group/1.7.0.201606061308
-Operation completed in 670 ms.
