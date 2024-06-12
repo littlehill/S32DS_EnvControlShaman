@@ -1,3 +1,6 @@
+# exclusions of folders and files used by the install/export scripts
+workspace/
+
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
