@@ -1,7 +1,7 @@
 #!/bin/bash
 MAINOUTPUTFILE="config_roots_K3xx.txt"
 
-../S32DS.3.5/eclipse/eclipsec.exe -application org.eclipse.equinox.p2.director -listInstalledRoots 2>/dev/null >$MAINOUTPUTFILE
+../S32DS.3.5/eclipse/eclipsec.exe -application org.eclipse.equinox.p2.director -listInstalledRoots -noSplash 2>/dev/null >$MAINOUTPUTFILE
 RC=$?
 if [ $RC -eq "0" ]; then
   echo "Export DONE. File: $MAINOUTPUTFILE"
