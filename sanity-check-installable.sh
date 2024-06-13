@@ -16,26 +16,28 @@ COUNTER_SATISFIABLE=0
 COUNTER_FAILED2MATCH=0
 
 #check if we can find repo for each IU root
-for root in $(cat $ROOTS_LISTFILE); do
-  
-  MATCHED_FILES=$(grep -E -R -n $root ./workspace/*.txt | cut -d: -f 1)
+for iuroot in $(cat $ROOTS_LISTFILE); do
+# get rid of whitespace bs  
+  iuroot="$(echo $iuroot)"
 
-  if [ -z "$MATCHED_FILES" ]; then
-    echo "FAILED to MATCH: $root"
+  MATCHED_FILE=$(grep -R -n "$iuroot" ./workspace/*.txt | head -1 | cut -d: -f 1);
+
+  if [ -z "$MATCHED_FILE" ]; then
+    echo "FAILED to MATCH: $iuroot";
     ((COUNTER_FAILED2MATCH+=1))
+    echo "--";
   else
-    echo "for $root matched files:"
-    echo "$MATCHED_FILES"
-    MATCHED_FILES_ARRAY=($MATCHED_FILES)
-    echo "item #1: ${MATCHED_FILES_ARRAY[0]}"
-
-    MATCHED_REPO=$(grep ${MATCHED_FILES_ARRAY[0]} $REPO_REFLISTFILE | cut -d' ' -f 1)
-    echo "for $root found repository:"
+    echo "for $iuroot matched file: $MATCHED_FILE"
+    echo "LOG all avalable repos:"
+    grep -R -n "$iuroot" ./workspace/*.txt
+    echo "--"
+    MATCHED_REPO=$(grep ${MATCHED_FILE} $REPO_REFLISTFILE | cut -d' ' -f 1)
+    echo "for $iuroot found repository:"
     echo "  $MATCHED_REPO"
     ((COUNTER_SATISFIABLE+=1))
+    echo "-- root resolved";
   fi
   
-  echo "-- root resolved";
 done
 echo "--------------------------------------------------"
 echo "-- Install sanity check DONE --";
