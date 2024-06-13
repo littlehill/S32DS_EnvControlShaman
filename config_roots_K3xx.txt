@@ -46,7 +46,7 @@ org.eclipse.ecf.core.feature.feature.group/1.5.702.v20210409-2301
 org.eclipse.ecf.filetransfer.feature.feature.group/3.14.1703.v20210409-2301
 org.eclipse.ecf.filetransfer.httpclient45.feature.feature.group/1.0.703.v20210512-0614
 org.eclipse.ecf.filetransfer.ssl.feature.feature.group/1.1.401.v20210409-2301
-org.eclipse.egit.feature.group/5.12.0.202106021050-rc1
+org.eclipse.egit.feature.group/5.12.0.202106070339-r
 org.eclipse.emf.common.feature.group/2.22.0.v20210319-0732
 org.eclipse.emf.ecore.edit.feature.group/2.8.0.v20140203-1126
 org.eclipse.emf.ecore.feature.group/2.24.0.v20210405-0628
