@@ -1,5 +1,6 @@
 # exclusions of folders and files used by the install/export scripts
 workspace/
+list_of_roots_s32ds.tmp.txt
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
