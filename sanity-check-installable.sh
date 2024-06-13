@@ -1,8 +1,28 @@
 #!/bin/bash
 
+# Check if a filename is provided as the first argument
+if [ -z "$1" ]; then
+  # Print usage message with an extended comment
+  echo "Usage: $0 <filename>"
+  echo "No filename provided. Using default value 'config_roots_K3xx.txt'."
+  ROOTS_LISTFILE="config_roots_K3xx.txt"
+else
+  ROOTS_LISTFILE="$1"
+fi
+
+# Check if the file exists
+if [ ! -f "$ROOTS_LISTFILE" ]; then
+  echo "Error: File '$ROOTS_LISTFILE' does not exist."
+  exit 1
+fi
+
 echo "- START -"
-ROOTS_LISTFILE="config_roots_K3xx.txt"
 REPO_REFLISTFILE="./workspace/repo-file-list.index"
+# Check if the file exists
+if [ ! -f "$REPO_REFLISTFILE" ]; then
+  echo "Error: File '$REPO_REFLISTFILE' does not exist."
+  exit 1
+fi
 
 INSTALLABLE_ORDER_FILE="./workspace/installable-list-of-IUs.order"
 rm $INSTALLABLE_ORDER_FILE
