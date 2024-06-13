@@ -1,10 +1,10 @@
 MIRROR_ECLIPSE_ORG_release_2021	 http://download.eclipse.org/releases/2021-06
 MIRROR_ECLIPSE_CDT_tools_10.3_updatesite  https://download.eclipse.org/tools/cdt/releases/10.3
-MIRROR_RTD_APSW_S32DS_3.5_20240612  http://www.nxp.com/lgfiles/updates/Eclipse/APSW/S32DS_3.5		
-MIRROR_ECLIPSE_NXP_S32DS_3.5_20240612  https://www.nxp.com/lgfiles/updates/Eclipse/S32DS_3.5	
-MIRROR_ECLIPSE_4.20_updatesite  http://download.eclipse.org/eclipse/updates/4.20	
-MIRROR_ECLIPSE_GNU_ARM_plugins_updatesite  http://gnuarmeclipse.sourceforge.net/updates	
-MIRROR_iSystemDebugger_NXP_latest  http://www.isystem.com/downloads/artifacts/eclipse_debug_NXP_DS/latest	
-MIRROR_iSystemDebugger_eclipse_updatesite  http://www.isystem.si/eclipseUpdate/debuggerEclipse2020_09	
-MIRROR_LauterbachGmbH_updatesite  http://www.lauterbach.com/eclipse	
+MIRROR_ECLIPSE_4.20_updatesite  http://download.eclipse.org/eclipse/updates/4.20
+MIRROR_ECLIPSE_GNU_ARM_plugins_updatesite https://sourceforge.net/projects/gnuarmeclipse/files/Eclipse/updates/
+MIRROR_ECLIPSE_NXP_S32DS_3.5_20240612  https://www.nxp.com/lgfiles/updates/Eclipse/S32DS_3.5
+MIRROR_RTD_APSW_S32DS_3.5_20240612  http://www.nxp.com/lgfiles/updates/Eclipse/APSW/S32DS_3.5
+MIRROR_iSystemDebugger_NXP_latest  http://www.isystem.com/downloads/artifacts/eclipse_debug_NXP_DS/latest
+MIRROR_iSystemDebugger_eclipse_updatesite  http://www.isystem.si/eclipseUpdate/debuggerEclipse2020_09
+MIRROR_LauterbachGmbH_updatesite  http://www.lauterbach.com/eclipse
 MIRROR_PEMicro_eclipse_updatesite  https://www.pemicro.com/eclipse/updates

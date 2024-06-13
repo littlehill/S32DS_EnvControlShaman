@@ -14,11 +14,18 @@ while IFS= read -r line; do
     string1=$(echo "$line" | cut -d' ' -f1)
     string2=$(echo "$line" | cut -d' ' -f2-)
 
-    # Print the strings with the specified prefixes
-    echo "first arg: $string1"
-    echo "second arg: $string2"
+    if [ ! -d /c/NXP/__S32DS_Install-PKGSRC/NXP_repos_mirrored/$string1 ]; then
+    # Print the strings ussage
+      echo "RUN: ./mirror-repository.sh $string2 $string1"
+      ./mirror-repository.sh "$string2" "$string1"
+      if [[ $? -ne 0 ]]; then
+        echo "ERROR"
+        exit 1
+      fi
+    else
+      echo "SKIP $string1 -- repostiry already exists"
+    fi
 
     # Print the separator line
     echo "--------------------"
-
 done < "$filename"
