@@ -28,7 +28,7 @@ com.nxp.s32ds.s32k396.dev.feature.feature.group/3.5.11.202403271220
 com.pemicro.debug.gdbjtag.pne.alpha.feature.feature.group/5.7.5.202311071732
 com.pemicro.debug.gdbjtag.pne.expansion.feature.feature.group/5.7.5.202311071732
 com.pemicro.debug.gdbjtag.pne.feature.feature.group/5.7.5.202311071732
-ilg.gnuarmeclipse.debug.gdbjtag.jlink.feature.group/4.1.2.201701141320
+ilg.gnuarmeclipse.debug.gdbjtag.jlink.feature.group/4.1.4.201704251808
 net.sourceforge.ehep.feature.group/1.1.0
 org.eclipse.cdt.build.crossgcc.feature.group/10.3.3.202109091914
 org.eclipse.cdt.debug.gdbjtag.feature.group/10.3.3.202109091914
