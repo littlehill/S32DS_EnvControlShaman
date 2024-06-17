@@ -48,7 +48,7 @@ org.eclipse.ecf.filetransfer.httpclient45.feature.feature.group/1.0.703.v2021051
 org.eclipse.ecf.filetransfer.ssl.feature.feature.group/1.1.401.v20210409-2301
 org.eclipse.egit.feature.group/5.12.0.202106070339-r
 org.eclipse.emf.common.feature.group/2.22.0.v20210319-0732
-org.eclipse.emf.ecore.edit.feature.group/2.8.0.v20140203-1126
+org.eclipse.emf.ecore.edit.feature.group/2.14.0.v20190822-1451
 org.eclipse.emf.ecore.feature.group/2.24.0.v20210405-0628
 org.eclipse.equinox.p2.core.feature.feature.group/1.6.1000.v20210507-0825
 org.eclipse.equinox.p2.rcp.feature.feature.group/1.4.1200.v20210507-0825
@@ -57,10 +57,10 @@ org.eclipse.fx.ide.basic.feature.feature.group/3.7.0.202010120832
 org.eclipse.gef.feature.group/3.11.0.201606061308
 org.eclipse.help.feature.group/2.3.600.v20210611-1600
 org.eclipse.mat.feature.feature.group/1.12.0.202106020830
-org.eclipse.nebula.widgets.grid.feature.feature.group/1.1.0.202106201019
+org.eclipse.nebula.widgets.grid.feature.feature.group/1.1.0.202402091246
 org.eclipse.platform.feature.group/4.20.0.v20210611-1600
 org.eclipse.rcp.feature.group/4.20.0.v20210611-1600
-org.eclipse.remote.feature.group/3.0.1.202001272000
+org.eclipse.remote.feature.group/3.0.1.201909031456
 org.eclipse.rse.feature.group/4.5.300.202101081641
 org.eclipse.tm.terminal.connector.local.feature.feature.group/10.3.3.202109091914
 org.eclipse.tm.terminal.connector.ssh.feature.feature.group/10.3.3.202109091914
