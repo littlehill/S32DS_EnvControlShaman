@@ -38,16 +38,24 @@ keep_list=()
 update_list=()
 remove_list=()
 
+if $VERBOSE; then echo "Processing local.... $(realpath $LOCAL_FILE)"; fi
 # Load local packages
 while IFS=/ read -r name version; do
-    local_packages["$name"]="$version"
+    #whitespace removal from the end of the version, different ends of line kept messing it up on Win
+    wstrimmedversion=$(sed -e 's/\ *$//g'<<<"${version}")
+    local_packages["$name"]="$wstrimmedversion"
 done < "$LOCAL_FILE"
 
+if $VERBOSE; then echo "Processing config... $(realpath $CONFIG_FILE)"; fi
 # Load config packages
 while IFS=/ read -r name version; do
-    config_packages["$name"]="$version"
+    #whitespace removal from the end of the version, different ends of line kept messing it up on Win
+    wstrimmedversion=$(sed -e 's/\ *$//g'<<<"${version}")
+    config_packages["$name"]="$wstrimmedversion"
 done < "$CONFIG_FILE"
 
+
+if $VERBOSE; then echo "Comparing package lists..."; fi
 # Determine package actions
 for name in "${!config_packages[@]}"; do
     if [ -n "${local_packages[$name]}" ]; then
@@ -99,6 +107,7 @@ remove_packages() {
     print_list "Remove packages" "$VERBOSE" "${remove_list[@]}"
 }
 
+if $VERBOSE; then echo "Processing DONE."; fi
 # Print summary
 install_packages
 keep_packages
