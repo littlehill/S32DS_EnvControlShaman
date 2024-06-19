@@ -112,20 +112,48 @@ return 0
 }
 
 # Functions to handle package actions
-install_package() {
-    print_list "Install packages" "$VERBOSE" "${install_list[@]}"
-}
-
 keep_package() {
-    print_list "Keep packages" "$VERBOSE" "${keep_list[@]}"
+    if $VERBOSE; then echo "KEEP pkg: $1"; fi
 }
 
 update_package() {
-    print_list "Update packages" "$VERBOSE" "${update_list[@]}"
+  local eclipse_verify=""
+  if $TESTONLY_FLAG; then
+      eclipse_verify="-verifyOnly"
+  fi
+  if $VERBOSE; then echo "UPDATING pkg: $1"; fi
+  local pkg_basename=$(echo $1 | cut -d/ -f 1)
+  ../S32DS.3.5/eclipse/eclipsec.exe \
+      -application org.eclipse.equinox.p2.director \
+      -repository "$2" \
+      -uninstallIU "$pkg_basename" \
+      -installIU "$1" \
+      -consolelog -noSplash ${eclipse_verify} 2>/dev/null
 }
 
 remove_package() {
-    print_list "Remove packages" "$VERBOSE" "${remove_list[@]}"
+  local eclipse_verify=""
+  if $TESTONLY_FLAG; then
+      eclipse_verify="-verifyOnly"
+  fi
+  if $VERBOSE; then echo "REMOVING pkg: $1"; fi
+  ../S32DS.3.5/eclipse/eclipsec.exe \
+      -application org.eclipse.equinox.p2.director \
+      -uninstallIU "$1" \
+      -consolelog -noSplash ${eclipse_verify} 2>/dev/null
+}
+
+install_package() {
+  local eclipse_verify=""
+  if $TESTONLY_FLAG; then
+      eclipse_verify="-verifyOnly"
+  fi
+  if $VERBOSE; then echo "INSTALLING pkg: $1"; fi
+  ../S32DS.3.5/eclipse/eclipsec.exe \
+      -application org.eclipse.equinox.p2.director \
+      -repository "$2" \
+      -installIU "$1" \
+      -consolelog -noSplash ${eclipse_verify} 2>/dev/null
 }
 
 if $VERBOSE; then echo "Processing DONE."; fi
@@ -175,29 +203,31 @@ if [ $FAILED2MATCH -gt 0 ]; then
   exit 1
 fi
 
-for iunamekey in ${!install_list_repos[@]}; do
-  if $VERBOSE; then echo "install:  =${iunamekey}=  from repo: =${install_list_repos[$iunamekey]}="; fi
-done
-
 if ! ${INSTALL_FLAG}; then
   # if we do not install, just exit here
   echo "INSTALL_FLAG not set, exiting 0;"
   exit 0
 fi
 
-#TODO: create 'sanity check instllable' function/script which can process the update and install list
-    #big on verbose too
+# run KEEP loop, verbose print mostly, maybe useful later
+for iuname in "${keep_list[@]}"; do
+  keep_package "$iuname"
+done
 
+# run UPDATE packages
+for iunamekey in ${!update_list_repos[@]}; do
+  update_package "${iunamekey}" "${install_list_repos[$iunamekey]}";
+done
 
-        #TODO: on VERBOSE print which packages are being skipped
+# run REMOVE packages
+for iuname in "${remove_list[@]}"; do
+  remove_package "$iuname"
+done
 
-#TODO: run UPDATE packages - possibly with verify-only
-
-#TODO: run REMOVE packages - possibly with verify-only
-
-#TODO: run INSTALL packages - possibly with verify-only
-
-#report results
+# run INSTALL packages
+for iunamekey in ${!install_list_repos[@]}; do
+  install_package "${iunamekey}" "${install_list_repos[$iunamekey]}";
+done
 
 #untils the script is complete, exit with error
-exit 127
+exit 0
