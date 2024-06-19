@@ -14,7 +14,13 @@ trap "rm -rf $temp_folder" EXIT
 
 # Help function
 usage() {
-  echo "Usage: $0 [-outfile <output filename>] [-infile <input filename>] [-folder <path to a folder>] [-url <path to file on the web>] [-v] [-k] [-h]"
+  echo "Usage: $0 [-outfile <output filename>] [-url <path to the repositories in S3 bucket or on NAS>] ..."
+  echo "other arguments available:"
+  echo "   [-folder <path to a local folder with mirrored/extracted repos>] "
+  echo "   [-infile <input the list fo repos from a local file>]"
+  echo "   [-k] keep temp folders with intermediary files"
+  echo "   [-v] verbose, talk more"
+  echo "   [-h] help, print this"
   exit 1
 }
 
@@ -27,6 +33,10 @@ file_exists() {
 }
 
 # Parse arguments
+if [[ "$#" -eq 0 ]]; then
+  usage
+fi
+
 while [[ "$#" -gt 0 ]]; do
   case $1 in
     -outfile) outfile="$2"; shift ;;
@@ -41,6 +51,12 @@ while [[ "$#" -gt 0 ]]; do
   shift
 done
 
+# Check if outfile is provided and valid
+if [[ -z $outfile ]]; then
+  echo "Output file not specified"
+  exit 1
+fi
+
 # Create list of repos
 list_of_repos=()
 
@@ -51,13 +67,16 @@ if [[ -n $folder ]]; then
   done
 fi
 
+
+silence_on_md5sum=""
+if ! $verbose_flag; then silence_on_md5sum="--quiet"; fi
 # Process url argument
 if [[ -n $url ]]; then
   curl -s "$url/test-download.txt" -o "$temp_folder/test-download.txt"
   curl -s "$url/list-of-repos.txt" -o "$temp_folder/list-of-repos.txt"
   curl -s "$url/checksum.md5" -o "$temp_folder/checksum.md5"
 
-  (cd "$temp_folder" && md5sum -c checksum.md5)
+  (cd "${temp_folder}" && md5sum -c checksum.md5 ${silence_on_md5sum} )
   if [[ $? -ne 0 ]]; then
     echo "Checksum verification failed"
     exit 1
@@ -75,18 +94,10 @@ if $verbose_flag; then
   done
 fi
 
-# Write to outfile or temp file
-if [[ -n $outfile ]]; then
-  for repo in "${list_of_repos[@]}"; do
-    echo "$repo" >> "$outfile"
-  done
-else
-  temp_outfile=$(mktemp)
-  for repo in "${list_of_repos[@]}"; do
-    echo "$repo" >> "$temp_outfile"
-  done
-  echo "Output file not specified, data saved to $temp_outfile"
-fi
+# Write to outfile
+for repo in "${list_of_repos[@]}"; do
+  echo "$repo" >> "$outfile"
+done
 
 # Clean up temp folder if not keeping temps
 if ! $keep_temps_flag; then
