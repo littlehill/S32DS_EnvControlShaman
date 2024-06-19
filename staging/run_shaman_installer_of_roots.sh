@@ -92,20 +92,39 @@ print_list() {
     fi
 }
 
+find_matching_repo() {
+  local search_string=$1
+  local folder_path=$2
+
+  local matched_list=$(grep "$search_string" ${folder_path}/repo_list_of_ius.* | head -n 1 | cut -d: -f 1)
+  if [ -z $matched_list ]; then
+    return 1;
+  fi
+
+  local matched_repo=$(grep $(basename $matched_list) ${folder_path}/repo_index_of_lists.txt | cut -d' ' -f 1)
+  if [ -z $matched_repo ]; then
+    return 1;
+  else
+    echo -n "$matched_repo "
+  fi
+
+return 0
+}
+
 # Functions to handle package actions
-install_packages() {
+install_package() {
     print_list "Install packages" "$VERBOSE" "${install_list[@]}"
 }
 
-keep_packages() {
+keep_package() {
     print_list "Keep packages" "$VERBOSE" "${keep_list[@]}"
 }
 
-update_packages() {
+update_package() {
     print_list "Update packages" "$VERBOSE" "${update_list[@]}"
 }
 
-remove_packages() {
+remove_package() {
     print_list "Remove packages" "$VERBOSE" "${remove_list[@]}"
 }
 
@@ -117,14 +136,54 @@ print_list "Remove packages" "$VERBOSE" "${remove_list[@]}"
 print_list "Install packages" "$VERBOSE" "${install_list[@]}"
 
 
+#create the list of available repos and their destination
+#done before by "create_list_of_available_repos.sh"
+
+
+# -t flag - if this is apssed, just run the check for matched repos on all update and install
+declare -A update_list_repos
+declare -A install_list_repos
+
+FAILED2MATCH=0
+MATCHEDCOUNTER=0
+
+echo "check repo lists for UPDATE:"
+for iuname in ${update_list[@]}; do
+  update_list_repos[$iuname]=$(find_matching_repo "$iuname" "./workspace/")
+  if [ $? -ne "0" ]; then
+    ((FAILED2MATCH+=1))
+    echo "Update FAILED to match: $iuname"
+  else
+    ((MATCHEDCOUNTER+=1))
+  fi
+done
+
+echo "check repo lists for INSTALL:"
+for iuname in ${install_list[@]}; do
+  install_list_repos[$iuname]=$(find_matching_repo "$iuname" "./workspace/")
+  if [ $? -ne "0" ]; then
+    ((FAILED2MATCH+=1))
+    echo "Install FAILED to match: $iuname"
+  else
+    ((MATCHEDCOUNTER+=1))
+  fi
+done
+
+echo "Info: matched $MATCHEDCOUNTER IUs in total."
+if [ $FAILED2MATCH -gt 0 ]; then
+  echo "ERROR: FAILED to match $FAILED2MATCH IUs in total."
+  exit 1
+fi
+
+for iunamekey in ${!install_list_repos[@]}; do
+  if $VERBOSE; then echo "install:  =${iunamekey}=  from repo: =${install_list_repos[$iunamekey]}="; fi
+done
+
 if ! ${INSTALL_FLAG}; then
   # if we do not install, just exit here
   echo "INSTALL_FLAG not set, exiting 0;"
   exit 0
 fi
-
-#TODO: create the list of available repos and their destination
-    #TODO: on VERBOSE print the list
 
 #TODO: create 'sanity check instllable' function/script which can process the update and install list
     #big on verbose too
