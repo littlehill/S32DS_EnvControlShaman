@@ -175,7 +175,7 @@ declare -A install_list_repos
 FAILED2MATCH=0
 MATCHEDCOUNTER=0
 
-echo "check repo lists for UPDATE:"
+if $VERBOSE; then echo "check repo lists for UPDATE:"; fi
 for iuname in ${update_list[@]}; do
   update_list_repos[$iuname]=$(find_matching_repo "$iuname" "./workspace/")
   if [ $? -ne "0" ]; then
@@ -186,7 +186,7 @@ for iuname in ${update_list[@]}; do
   fi
 done
 
-echo "check repo lists for INSTALL:"
+if $VERBOSE; then echo "check repo lists for INSTALL:"; fi
 for iuname in ${install_list[@]}; do
   install_list_repos[$iuname]=$(find_matching_repo "$iuname" "./workspace/")
   if [ $? -ne "0" ]; then
@@ -216,7 +216,7 @@ done
 
 # run UPDATE packages
 for iunamekey in ${!update_list_repos[@]}; do
-  update_package "${iunamekey}" "${install_list_repos[$iunamekey]}";
+  update_package "${iunamekey}" "${update_list_repos[$iunamekey]}";
 done
 
 # run REMOVE packages
