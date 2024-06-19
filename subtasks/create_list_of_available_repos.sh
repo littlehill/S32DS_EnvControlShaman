@@ -62,7 +62,7 @@ list_of_repos=()
 
 # Process folder argument
 if [[ -n $folder ]]; then
-  for dir in "$folder"/*/; do
+  for dir in "$folder"*/; do
     list_of_repos+=("DIR $dir")
   done
 fi
@@ -94,6 +94,7 @@ if $verbose_flag; then
   done
 fi
 
+echo -n "" > "$outfile";
 # Write to outfile
 for repo in "${list_of_repos[@]}"; do
   echo "$repo" >> "$outfile"
