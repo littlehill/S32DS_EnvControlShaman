@@ -8,3 +8,4 @@ MIRROR_iSystemDebugger_NXP_latest  http://www.isystem.com/downloads/artifacts/ec
 MIRROR_iSystemDebugger_eclipse_updatesite  http://www.isystem.si/eclipseUpdate/debuggerEclipse2020_09
 MIRROR_LauterbachGmbH_updatesite  http://www.lauterbach.com/eclipse
 MIRROR_PEMicro_eclipse_updatesite  https://www.pemicro.com/eclipse/updates
+MIRROR_NEBULA_S202402091246_updatesite https://download.eclipse.org/justj/?file=nebula/updates/milestone/S202402091246
