@@ -1,14 +1,6 @@
 a.jre.javase/11.0.0
 a.jre.javase/14.0.0
 com.nxp.AASW.S32K3.0.9.0.feature.feature.group/0.9.0.202305250358
-com.nxp.RTD.S32K396.feature.feature.group/4.0.0.202311291607
-com.nxp.RTD.S32K396.root.feature.feature.group/4.0.0.202311291607
-com.nxp.RTD.S32K3XX.feature.feature.group/4.0.0.202311291607
-com.nxp.RTD.S32K3XX.root.feature.feature.group/4.0.0.202311291607
-com.nxp.RTD.S32K3_S32M27X.feature.feature.group/4.0.0.202311291607
-com.nxp.RTD.S32K3_S32M27X.root.feature.feature.group/4.0.0.202311291607
-com.nxp.RTD.S32M276.feature.feature.group/4.0.0.202311291607
-com.nxp.RTD.S32M276.root.feature.feature.group/4.0.0.202311291607
 com.nxp.cdt.platform.patch.feature.group/10.3.4
 com.nxp.s32ds.brc.arm.earmv7.gcc102.feature.feature.group/10.2.0.202307190908
 com.nxp.s32ds.brc.arm.earmv7.gcc92_1649.feature.feature.group/9.2.0.202307190917
@@ -70,3 +62,10 @@ org.eclipse.tm.terminal.view.feature.feature.group/10.3.3.202109091914
 org.eclipse.wst.xml_ui.feature.feature.group/3.22.0.v202103232331
 org.eclipse.xtend.feature.group/2.2.0.v201605260315
 org.eclipse.zest.feature.group/1.7.0.201606061308
+com.nxp.RTD.S32K396.feature.feature.group/4.0.0.202311291607
+com.nxp.RTD.S32K3XX.feature.feature.group/4.0.0.202311291607
+com.nxp.RTD.S32K3XX.root.feature.feature.group/4.0.0.202311291607
+com.nxp.RTD.S32K3_S32M27X.feature.feature.group/4.0.0.202311291607
+com.nxp.RTD.S32K3_S32M27X.root.feature.feature.group/4.0.0.202311291607
+com.nxp.RTD.S32M276.feature.feature.group/4.0.0.202311291607
+com.nxp.RTD.S32K396.root.feature.feature.group/4.0.0.202311291607
