@@ -2,21 +2,23 @@
 
 # Check if mandatory files are provided
 if [ $# -lt 2 ]; then
-    echo "Usage: $0 <local> <config> [-i] [-k] [-v]"
+    echo "Usage: $0 <local> <config> [-i] [-t] [-k] [-v]"
     exit 1
 fi
 
 LOCAL_FILE=$1
 CONFIG_FILE=$2
-INSTALL=false
+INSTALL_FLAG=false
+TESTONLY_FLAG=false
 CONTINUE_ON_FAIL=false
 VERBOSE=false
 
 # Parse optional arguments
 shift 2
-while getopts "ikv" opt; do
+while getopts "itkv" opt; do
     case ${opt} in
-        i ) INSTALL=true ;;
+        i ) INSTALL_FLAG=true ;;
+        t ) TESTONLY_FLAG=true ;;
         k ) CONTINUE_ON_FAIL=true ;;
         v ) VERBOSE=true ;;
         \? ) echo "Usage: $0 <local> <config> [-i] [-k] [-v]"
@@ -109,10 +111,34 @@ remove_packages() {
 
 if $VERBOSE; then echo "Processing DONE."; fi
 # Print summary
-install_packages
-keep_packages
-update_packages
-remove_packages
+print_list "Keep packages" "$VERBOSE" "${keep_list[@]}"
+print_list "Update packages" "$VERBOSE" "${update_list[@]}"
+print_list "Remove packages" "$VERBOSE" "${remove_list[@]}"
+print_list "Install packages" "$VERBOSE" "${install_list[@]}"
 
-# Exit with appropriate status
-exit 0
+
+if ! ${INSTALL_FLAG}; then
+  # if we do not install, just exit here
+  echo "INSTALL_FLAG not set, exiting 0;"
+  exit 0
+fi
+
+#TODO: create the list of available repos and their destination
+    #TODO: on VERBOSE print the list
+
+#TODO: create 'sanity check instllable' function/script which can process the update and install list
+    #big on verbose too
+
+
+        #TODO: on VERBOSE print which packages are being skipped
+
+#TODO: run UPDATE packages - possibly with verify-only
+
+#TODO: run REMOVE packages - possibly with verify-only
+
+#TODO: run INSTALL packages - possibly with verify-only
+
+#report results
+
+#untils the script is complete, exit with error
+exit 127
