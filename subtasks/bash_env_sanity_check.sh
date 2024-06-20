@@ -84,7 +84,7 @@ done
 
 # Check that '../S32DS.3.5/eclipse/eclipsec.exe' exits with 0
 perform_check "Check that '../S32DS.3.5/eclipse/eclipsec.exe ..p2.director -help' exits with 0" \
-  "timeout -k 40 30 ../S32DS.3.5/eclipse/eclipsec.exe \
+  "timeout -k 90 80 ../S32DS.3.5/eclipse/eclipsec.exe \
   -application org.eclipse.equinox.p2.director \
   -help -nosplash -consolelog > /dev/null 2>&1"
 
