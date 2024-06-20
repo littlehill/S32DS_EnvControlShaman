@@ -5,7 +5,7 @@ echo "- STEP 1 -----------------------------------------------------------------
 ./export-roots.sh local_list_of_roots_s32ds.tmp.txt
 
 echo "- STEP 2 --------------------------------------------------------------------"
-./subtasks/create_workspace_lists_of_installable_units.sh -r ./generated_list_of_repos.tmp.txt -o ./workspace
+./subtasks/create_workspace_lists_of_installable_units.sh -r "$1" -o ./workspace
 
 echo "- STEP 3 --------------------------------------------------------------------"
 ./run_shaman_installer_of_roots.sh ./local_list_of_roots_s32ds.tmp.txt ./config_roots_K3xx.txt -i
