@@ -5,6 +5,7 @@ echo "- STEP 1 -----------------------------------------------------------------
 ./export-roots.sh local_list_of_roots_s32ds.tmp.txt
 
 echo "- STEP 2 --------------------------------------------------------------------"
+rm -rf ./workspace
 ./subtasks/create_workspace_lists_of_installable_units.sh -r "$1" -o ./workspace
 
 echo "- STEP 3 --------------------------------------------------------------------"
