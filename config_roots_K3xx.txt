@@ -68,6 +68,7 @@ com.nxp.RTD.S32K3_S32M27X.root.feature.feature.group/4.0.0.202311291607
 com.nxp.RTD.S32M276.feature.feature.group/4.0.0.202311291607
 com.nxp.RTD.S32K396.feature.feature.group/4.0.0.202311291607
 com.nxp.RTD.S32K396.root.feature.feature.group/4.0.0.202311291607
+com.nxp.FREERTOS.S32K3_S32M27X.root.4.0.0.feature.feature.group/4.0.0.202312180411
 com.nxp.FREERTOS.S32K3_S32M27X.4.0.0.feature.feature.group/4.0.0.202312180411
 com.nxp.FS26.S32K3XX.feature.feature.group/4.0.0.202405140648
 com.nxp.FS26.S32K3XX.root.feature.feature.group/4.0.0.202405140648
