@@ -14,6 +14,7 @@ com.nxp.s32ds.platform.ide.feature.feature.group/3.5.13.202407261948
 com.nxp.s32ds.platform.ide.product/3.5.0.202207261815
 com.nxp.s32ds.platform.ide.tools.feature.feature.group/3.5.13.202407261948
 com.nxp.s32ds.s32k3.dev.feature.feature.group/3.5.13.202407262044
+com.nxp.s32ds.s32k3.sdk.freemaster.v_3.0.feature.feature.group/1.0.0.202009250953
 com.nxp.s32ds.s32k396.dev.feature.feature.group/3.5.13.202407262030
 com.pemicro.debug.gdbjtag.pne.alpha.feature.feature.group/5.7.5.202311071732
 com.pemicro.debug.gdbjtag.pne.expansion.feature.feature.group/5.8.7.202407171925
@@ -61,6 +62,9 @@ org.eclipse.wst.xml_ui.feature.feature.group/3.22.0.v202103232331
 org.eclipse.xtend.feature.group/2.2.0.v201605260315
 org.eclipse.zest.feature.group/1.7.0.201606061308
 com.nxp.AASW.S32K3.0.9.0.feature.feature.group/0.9.0.202305250358
+com.nxp.AASW.S32K3XX.2.0.0.feature.feature.group/2.0.0.202401260233
+com.nxp.AASW.S32K3XX.root.2.0.0.feature.feature.group/2.0.0.202401260233
+com.nxp.AMMCLIB.S32K3xx.root.feature.feature.group/1.1.38.202409161322
 com.nxp.RTD.S32K3XX.feature.feature.group/4.0.0.202311291607
 com.nxp.RTD.S32K3XX.root.feature.feature.group/4.0.0.202311291607
 com.nxp.RTD.S32K3_S32M27X.feature.feature.group/4.0.0.202311291607
@@ -70,5 +74,14 @@ com.nxp.RTD.S32K396.feature.feature.group/4.0.0.202311291607
 com.nxp.RTD.S32K396.root.feature.feature.group/4.0.0.202311291607
 com.nxp.FREERTOS.S32K3_S32M27X.root.4.0.0.feature.feature.group/4.0.0.202312180411
 com.nxp.FREERTOS.S32K3_S32M27X.4.0.0.feature.feature.group/4.0.0.202312180411
+com.nxp.HAL.SW32K3.feature.feature.group/2024.9.0.202409250534
+com.nxp.HAL.SW32K3.root.feature.feature.group/2024.9.0.202409250534
+com.nxp.ETPU_SW.S32K3XX.1.0.1.feature.feature.group/1.0.1.202408141307
+com.nxp.ETPU_SW.S32K3XX.root.1.0.1.feature.feature.group/1.0.1.202408141307
 com.nxp.FS26.S32K3XX.feature.feature.group/4.0.0.202405140648
 com.nxp.FS26.S32K3XX.root.feature.feature.group/4.0.0.202405140648
+com.nxp.SDHC_STACK.S32K3.0.4.1.feature.feature.group/0.4.1.202401310934
+com.nxp.SDHC_STACK.S32K3.root.0.4.1.feature.feature.group/0.4.1.202401310934
+com.nxp.TCPIP_STACK.S32K3XX.1.0.4.feature.feature.group/1.0.4.202401311101
+com.nxp.TCPIP_STACK.S32K3XX.root.1.0.4.feature.feature.group/1.0.4.202401311101
+com.nxp.IntegrationReferenceExamples.S32K3XX.2023.04.0.feature.feature.group/2023.4.0.202304041303
