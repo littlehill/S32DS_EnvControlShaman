@@ -4,6 +4,7 @@ MIRROR_ECLIPSE_4.20_updatesite  http://download.eclipse.org/eclipse/updates/4.20
 MIRROR_ECLIPSE_GNU_ARM_plugins_updatesite https://sourceforge.net/projects/gnuarmeclipse/files/Eclipse/updates/
 MIRROR_ECLIPSE_NXP_S32DS_3.5_20240612  https://www.nxp.com/lgfiles/updates/Eclipse/S32DS_3.5
 MIRROR_RTD_APSW_S32DS_3.5_20240612  http://www.nxp.com/lgfiles/updates/Eclipse/APSW/S32DS_3.5
+MIRROR_ECLIPSE_NXP_AMMCLIB_S32DS_3.5  https://www.nxp.com/lgfiles/updates/Eclipse/AMMCLIB/S32DS_3.5
 MIRROR_iSystemDebugger_NXP_latest  http://www.isystem.com/downloads/artifacts/eclipse_debug_NXP_DS/latest
 MIRROR_iSystemDebugger_eclipse_updatesite  http://www.isystem.si/eclipseUpdate/debuggerEclipse2020_09
 MIRROR_LauterbachGmbH_updatesite  http://www.lauterbach.com/eclipse
