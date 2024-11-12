@@ -8,6 +8,10 @@ com.nxp.FREERTOS.S32K3_S32M27X.4.0.0.feature.feature.group/4.0.0.202312180411
 com.nxp.FREERTOS.S32K3_S32M27X.root.4.0.0.feature.feature.group/4.0.0.202312180411
 com.nxp.FS26.S32K3XX.feature.feature.group/4.0.0.202405140648
 com.nxp.FS26.S32K3XX.root.feature.feature.group/4.0.0.202405140648
+com.nxp.FS26.S32K3.2.0.0.feature.feature.group/2.0.0.202308040805
+com.nxp.FS26.S32K3.root.2.0.0.feature.feature.group/2.0.0.202308040805
+com.nxp.FS26.S32K3XX.3.0.0.feature.feature.group/3.0.0.202312191838
+com.nxp.FS26.S32K3XX.root.3.0.0.feature.feature.group/3.0.0.202312191838
 com.nxp.HAL.SW32K3.feature.feature.group/2024.9.0.202409250534
 com.nxp.HAL.SW32K3.root.feature.feature.group/2024.9.0.202409250534
 com.nxp.IntegrationReferenceExamples.S32K3XX.2023.04.0.feature.feature.group/2023.4.0.202304041303
