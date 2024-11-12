@@ -18,7 +18,6 @@ com.nxp.RTD.S32K3XX.root.feature.feature.group/4.0.0.202405281756
 com.nxp.RTD.S32K3_S32M27X.feature.feature.group/4.0.0.202405281756
 com.nxp.RTD.S32K3_S32M27X.root.feature.feature.group/4.0.0.202405281756
 com.nxp.RTD.S32M276.feature.feature.group/4.0.0.202405281756
-com.nxp.RTD.S32M276.root.feature.feature.group/4.0.0.202405281756
 com.nxp.SDHC_STACK.S32K3.0.4.1.feature.feature.group/0.4.1.202401310934
 com.nxp.SDHC_STACK.S32K3.root.0.4.1.feature.feature.group/0.4.1.202401310934
 com.nxp.TCPIP_STACK.S32K3XX.1.0.4.feature.feature.group/1.0.4.202401311101
