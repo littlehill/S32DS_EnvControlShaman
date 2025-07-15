@@ -3,17 +3,24 @@
 # Function to print usage
 usage() {
     echo "Usage: $0 -i <install_input_file> [-r] [-t]"
+    echo " -e -- path to Eclipse executable (required, e.g. /c/NXP/S32DS.3.x.x/eclipse/s32ds.exe)"
     echo " -r -- run the install"
     echo " -t -- test run, does not install no matter what"
     exit 1
 }
 
+SCRIPT_NAME=$(basename "$0")
+
 INSTALL_FLAG=""
 TESTRUN_FLAG=""
-while getopts ":i:r:t:" opt; do
+ECLIPSE_EXEC=""
+while getopts ":i:e:r:t:" opt; do
     case ${opt} in
         i ) 
             ROOTS_LISTFILE=$OPTARG
+            ;;
+        e )
+            ECLIPSE_EXEC=$OPTARG
             ;;
         r )
             INSTALL_FLAG="1"
@@ -29,7 +36,17 @@ done
 
 shift $((OPTIND -1))
 
-# Check if a filename is provided as the first argument
+if [ -z "$ECLIPSE_EXEC" ]; then
+    echo "[${SCRIPT_NAME}:${LINENO}] Error: Eclipse executable path (-e) is required."
+    usage
+fi
+
+if [ ! -x "$ECLIPSE_EXEC" ]; then
+    echo "[${SCRIPT_NAME}:${LINENO}] Error: '$ECLIPSE_EXEC' is not an executable file."
+    exit 1
+fi
+
+# Check if a filename is provided
 if [ -z "$ROOTS_LISTFILE" ]; then
   # Print usage message with an extended comment
   echo "Usage: $0 <filename>"
@@ -88,7 +105,7 @@ for iuroot in $(cat $ROOTS_LISTFILE); do
   
   if [ ! -z $INSTALL_FLAG ]; then
     echo "-- runnning INSTALL with p2.director:"
-    ../S32DS.3.5/eclipse/eclipsec.exe \
+    "${ECLIPSE_EXEC}" \
     -application org.eclipse.equinox.p2.director \
     -repository "$MATCHED_REPO" \
     -installIU "$iuroot" \

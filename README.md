@@ -24,16 +24,19 @@ Info: This only works with Win10/11 at the moment.
 
 2. Checkout this repository into `/c/NXP/`. If `/c/NXP` does not exist, create it.
 
-3. Install the S32DS from `S32DS.3.5_b220726_win32.x86_64.exe`.
+3. Install the S32DS.3.6.x from NXP : `S32DS_3.6.0_win32.x86_64` or `S32DS_3.6.2_RFP_win32.x86_64.exe`.
 
 4. Open Git Bash and `cd` into the `/c/NXP/S32DS_EnvControlShaman` folder.
+   
+5. Set a ```SHAMAN_ECLIPSE_BIN_PATH``` variable to the path of S32DS eclipse executable.  
+(expecting something like "/c/NXP/S32DS.3.6.0/eclipse/s32ds.exe" or "../S32DS.3.6.2/eclipse/s32ds.exe")
 
-5. Run `./subtasks/bash_env_sanity_check.sh -v`.
+6. Run `./subtasks/bash_env_sanity_check.sh -v`.
     - Fix any errors before continuing.
 
-6. Run one of the following commands:
+7. Run one of the following commands:
     - `./subtasks/create_list_of_available_repos.sh -outfile generated_list_of_repos.tmp.txt -url <path to the repositories in S3 bucket or on NAS>`
     - `./subtasks/create_list_of_available_repos.sh -outfile generated_list_of_repos.tmp.txt -dir <the root folder of your local extracted repos>`
 
-7. Run `./automated-s32ds-update_main.sh generated_list_of_repos.tmp.txt` and hope for the best.
+8. Run `./automated-s32ds-update_main.sh generated_list_of_repos.tmp.txt` and hope for the best.
 

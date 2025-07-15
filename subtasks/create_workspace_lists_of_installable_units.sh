@@ -2,7 +2,8 @@
 
 # Function to print usage
 usage() {
-    echo "Usage: $0 -r/--reposlist <reposlist_file> -o/--outdir <output_folder>"
+    echo "Usage: $0 -e/--eclipsebin <path> -r/--reposlist <reposlist_file> -o/--outdir <output_folder>"
+    echo "  [-e/--eclipsebin] -- path to Eclipse executable"
     echo "  [-f/forcewrite] -- export new lists even if the folder is not empty"
     echo "  [-v/--verbose]"
     exit 1
@@ -17,14 +18,19 @@ check_file() {
 }
 
 # Initialize variables
+SCRIPT_NAME=$(basename "$0")
 verbose=0
 checkonly=0
 outfile=""
 forcewrite="false"
+ECLIPSE_EXEC=""
 
 # Parse arguments
 while [[ "$#" -gt 0 ]]; do
     case $1 in
+        -e|--eclipsebin )
+            ECLIPSE_EXEC="$2"
+            ;;
         -r|--reposlist)
             reposlist="$2"
             shift 2
@@ -50,6 +56,16 @@ done
 # Check required arguments
 if [[ -z "$reposlist" || -z $outdir ]]; then
     usage
+fi
+
+if [ -z "$ECLIPSE_EXEC" ]; then
+    echo "[${SCRIPT_NAME}:${LINENO}] Error: Eclipse executable path (--eclipsebin) is required."
+    usage
+fi
+
+if [ ! -x "$ECLIPSE_EXEC" ]; then
+    echo "[${SCRIPT_NAME}:${LINENO}] Error: '$ECLIPSE_EXEC' is not an executable file."
+    exit 1
 fi
 
 # Check files
@@ -98,7 +114,7 @@ for repo in "${!repos_array[@]}"; do
     
     list_of_ius_tmp=$(mktemp "$outdir/repo_list_of_ius.XXXXXXXX")
     repo_file_index["$repo"]="$list_of_ius_tmp"
-    ./subtasks/get_list_of_available_ius_from_repo.sh --type "$repo_type" --path "$repo" --outfile "$list_of_ius_tmp" -v
+    ./subtasks/get_list_of_available_ius_from_repo.sh --eclipsebin "$ECLIPSE_EXEC" --type "$repo_type" --path "$repo" --outfile "$list_of_ius_tmp" -v
     thisrepoiucount=$(cat $list_of_ius_tmp | wc -l)
     ((totaliuscounter = totaliuscounter + thisrepoiucount))
 done

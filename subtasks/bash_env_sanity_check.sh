@@ -60,9 +60,17 @@ if [[ $VERBOSE -eq 1 ]]; then
     echo "Starting environment checks..."
 fi
 
-# Check if '../S32DS.3.5/eclipse/eclipsec.exe' exists
-perform_check "Check if '../S32DS.3.5/eclipse/eclipsec.exe' exists" \
-  "[[ -f '../S32DS.3.5/eclipse/eclipsec.exe' ]]"
+if [[ -z "${SHAMAN_ECLIPSE_BIN_PATH:-}" ]]; then
+  echo "ERROR: The environment variable SHAMAN_ECLIPSE_BIN_PATH is not set." >&2
+  echo "       Please export SHAMAN_ECLIPSE_BIN_PATH pointing at the main S32DS eclipse executable." >&2
+  exit 1
+fi
+
+ECLIPSE_BIN_PATH=$(realpath ${SHAMAN_ECLIPSE_BIN_PATH})
+
+# Check if the S32DS eclipse executable exists
+perform_check "Check if '${ECLIPSE_BIN_PATH}' exists" \
+  "[[ -f "${ECLIPSE_BIN_PATH}" ]]"
 
 # Create folder 'workspace' if it does not exist and make sure it is writable
 perform_check "Create folder 'workspace' if it does not exist and make sure it is writable" \
@@ -82,9 +90,9 @@ for cmd in "${commands[@]}"; do
     perform_check "Check that command '$cmd' is available" "command -v $cmd > /dev/null 2>&1"
 done
 
-# Check that '../S32DS.3.5/eclipse/eclipsec.exe' exits with 0
-perform_check "Check that '../S32DS.3.5/eclipse/eclipsec.exe ..p2.director -help' exits with 0" \
-  "timeout -k 90 80 ../S32DS.3.5/eclipse/eclipsec.exe \
+# Check if the S32DS eclipse executable exits with 0
+perform_check "Check that ${ECLIPSE_BIN_PATH} ..p2.director -help' exits with 0" \
+  "timeout -k 90 80 \"${ECLIPSE_BIN_PATH}\" \
   -application org.eclipse.equinox.p2.director \
   -help -nosplash -consolelog > /dev/null 2>&1"
 

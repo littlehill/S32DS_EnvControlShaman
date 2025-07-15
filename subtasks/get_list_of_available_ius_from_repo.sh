@@ -2,7 +2,8 @@
 
 # Function to display usage
 usage() {
-  echo "Usage: $0 --type TYPE --path PATH --outfile OUTFILE [-v|--verbose]"
+  echo "Usage: $0 --eclipsebin PATH --type TYPE --path PATH --outfile OUTFILE [-v|--verbose]"
+  echo " eclipsebin -- path to Eclipse executable"
   exit 1
 }
 
@@ -11,10 +12,16 @@ if [ "$#" -lt 6 ]; then
   usage
 fi
 
+SCRIPT_NAME=$(basename "$0")
+
 # Parse arguments
 VERBOSE=0
+ECLIPSE_EXEC=""
 while [[ "$#" -gt 0 ]]; do
   case $1 in
+    --eclipsebin )
+      ECLIPSE_EXEC="$2"
+      ;;
     --type)
       TYPE="$2"
       shift
@@ -60,13 +67,13 @@ fi
 
 if [ $VERBOSE -eq 1 ]; then echo "runnning p2.director on $REPO_PATH.."; fi
 # Run the command to list IUs
-IU_LIST=$(../S32DS.3.5/eclipse/eclipsec.exe \
+IU_LIST=$( ${$ECLIPSE_EXEC} \
   -application org.eclipse.equinox.p2.director \
   -repository "$REPO_PATH" \
   -list -noSplash 2>/dev/null)
 # Check if the command succeeded
 if [ $? -ne 0 ]; then
-  echo "Error executing eclipsec.exe."
+  echo "Error executing $ECLIPSE_EXEC."
   exit 1
 fi
 
@@ -75,7 +82,7 @@ IU_LIST=$(echo "$IU_LIST" | sed '/Operation completed in/d')
 
 # Check if the IU_LIST is empty
 if [ -z "$IU_LIST" ]; then
-  echo "No IUs found or eclipsec.exe failed to list IUs."
+  echo "No IUs found or failed to list IUs. ($ECLIPSE_EXEC)"
   exit 1
 fi
 

@@ -6,7 +6,7 @@ echo "- STEP 1 -----------------------------------------------------------------
 
 echo "- STEP 2 --------------------------------------------------------------------"
 rm -rf ./workspace
-./subtasks/create_workspace_lists_of_installable_units.sh -r "$1" -o ./workspace
+./subtasks/create_workspace_lists_of_installable_units.sh -e "$SHAMAN_ECLIPSE_BIN_PATH" -r "$1" -o ./workspace
 
 echo "- STEP 3 --------------------------------------------------------------------"
 ./run_shaman_installer_of_roots.sh ./local_list_of_roots_s32ds.tmp.txt ./config_roots_K3xx.txt -i

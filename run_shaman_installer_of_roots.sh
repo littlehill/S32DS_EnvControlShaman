@@ -32,6 +32,28 @@ if [ ! -r "$LOCAL_FILE" ] || [ ! -r "$CONFIG_FILE" ]; then
     exit 1
 fi
 
+if [[ -z "${SHAMAN_ECLIPSE_BIN_PATH:-}" ]]; then
+  echo "ERROR: The environment variable SHAMAN_ECLIPSE_BIN_PATH is not set." >&2
+  echo "       Please export SHAMAN_ECLIPSE_BIN_PATH pointing at the main S32DS eclipse executable." >&2
+  exit 1
+fi
+
+ECLIPSE_BIN_PATH=$(realpatch ${SHAMAN_ECLIPSE_BIN_PATH})
+
+if [[ ! -f "${ECLIPSE_BIN_PATH}" ]]; then
+  echo "ERROR: The file '${ECLIPSE_BIN_PATH}' does not exist." >&2
+  exit 1
+fi
+
+if ! timeout -k 90 80 "${ECLIPSE_BIN_PATH}" \
+    -application org.eclipse.equinox.p2.director \
+    -help -nosplash -consolelog > /dev/null 2>&1; then
+  echo "ERROR: '${ECLIPSE_BIN_PATH}' failed to execute. Ensure it is a valid S32DS eclipse executable." >&2
+  exit 1
+fi
+
+if $VERBOSE; then echo "SHAMAN_ECLIPSE_BIN_PATH set to: ${ECLIPSE_BIN_PATH}"; fi
+
 # Arrays to store packages
 declare -A local_packages
 declare -A config_packages
@@ -123,7 +145,7 @@ update_package() {
   fi
   if $VERBOSE; then echo "UPDATING pkg: $1"; fi
   local pkg_basename=$(echo $1 | cut -d/ -f 1)
-  ../S32DS.3.5/eclipse/eclipsec.exe \
+  "${ECLIPSE_BIN_PATH}" \
       -application org.eclipse.equinox.p2.director \
       -repository "$2" \
       -uninstallIU "$pkg_basename" \
@@ -137,7 +159,7 @@ remove_package() {
       eclipse_verify="-verifyOnly"
   fi
   if $VERBOSE; then echo "REMOVING pkg: $1"; fi
-  ../S32DS.3.5/eclipse/eclipsec.exe \
+  "${ECLIPSE_BIN_PATH}" \
       -application org.eclipse.equinox.p2.director \
       -uninstallIU "$1" \
       -consolelog -noSplash ${eclipse_verify} 2>/dev/null
@@ -149,7 +171,7 @@ install_package() {
       eclipse_verify="-verifyOnly"
   fi
   if $VERBOSE; then echo "INSTALLING pkg: $1"; fi
-  ../S32DS.3.5/eclipse/eclipsec.exe \
+  "${ECLIPSE_BIN_PATH}" \
       -application org.eclipse.equinox.p2.director \
       -repository "$2" \
       -installIU "$1" \
