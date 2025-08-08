@@ -21,6 +21,7 @@ while [[ "$#" -gt 0 ]]; do
   case $1 in
     --eclipsebin )
       ECLIPSE_EXEC="$2"
+      shift
       ;;
     --type)
       TYPE="$2"
@@ -67,7 +68,7 @@ fi
 
 if [ $VERBOSE -eq 1 ]; then echo "runnning p2.director on $REPO_PATH.."; fi
 # Run the command to list IUs
-IU_LIST=$( ${$ECLIPSE_EXEC} \
+IU_LIST=$( $ECLIPSE_EXEC \
   -application org.eclipse.equinox.p2.director \
   -repository "$REPO_PATH" \
   -list -noSplash 2>/dev/null)

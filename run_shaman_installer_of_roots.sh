@@ -38,7 +38,7 @@ if [[ -z "${SHAMAN_ECLIPSE_BIN_PATH:-}" ]]; then
   exit 1
 fi
 
-ECLIPSE_BIN_PATH=$(realpatch ${SHAMAN_ECLIPSE_BIN_PATH})
+ECLIPSE_BIN_PATH=$(realpath $SHAMAN_ECLIPSE_BIN_PATH)
 
 if [[ ! -f "${ECLIPSE_BIN_PATH}" ]]; then
   echo "ERROR: The file '${ECLIPSE_BIN_PATH}' does not exist." >&2

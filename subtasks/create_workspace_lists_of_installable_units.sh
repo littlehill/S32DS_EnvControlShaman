@@ -30,6 +30,7 @@ while [[ "$#" -gt 0 ]]; do
     case $1 in
         -e|--eclipsebin )
             ECLIPSE_EXEC="$2"
+            shift 2
             ;;
         -r|--reposlist)
             reposlist="$2"
@@ -66,6 +67,10 @@ fi
 if [ ! -x "$ECLIPSE_EXEC" ]; then
     echo "[${SCRIPT_NAME}:${LINENO}] Error: '$ECLIPSE_EXEC' is not an executable file."
     exit 1
+fi
+
+if [ $verbose -eq 1 ]; then
+    echo "ECLIPSE_EXEC path: $ECLIPSE_EXEC"
 fi
 
 # Check files
